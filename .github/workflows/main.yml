@@ -9,5 +9,5 @@ jobs:
     steps:
       - name: Print Custom Message
         run: echo Hello World!!
-#   Job_main:
-#     uses: ./.github/workflows/my_reusable_workflow.yml
+  Job_main:
+    uses: ./.github/workflows/my_reusable_workflow.yml
