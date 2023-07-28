@@ -1,13 +1,14 @@
-name: Flujo de trabajo reutilizable
-
-on:
+name: Deploy Infra ACR, AKS
+on: 
   workflow_call:
-jobs:
-  my_job:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Paso 1
-        run: echo "Este es el paso 1"
-      - name: Paso 2
-        run: echo "Este es el paso 2"
+jobs:
+  #...DeployAZ...
+  DeployResourceAz:
+    name: Deploy Resource AZ
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: CLI hola mundo
+        run: echo "hola mundo!"
