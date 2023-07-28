@@ -1,0 +1,13 @@
+name: Flujo de trabajo reutilizable
+
+on:
+  workflow_call:
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Paso 1
+        run: echo "Este es el paso 1"
+      - name: Paso 2
+        run: echo "Este es el paso 2"
