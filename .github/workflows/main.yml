@@ -1,13 +1,26 @@
-name: pipe
-
+   
+name: Main Workflow
 on:
   workflow_dispatch:
-jobs:
-  print_something:
-    runs-on: ubuntu-latest
+    # inputs:
+    #   Infra:
+    #     description: 'Choose action for infra'
+    #     required: true
+    #     type: choice
+    #     options:
+    #       - deploy
+    #       - destroy
 
+jobs:
+  main:
+    runs-on: ubuntu-latest
     steps:
-      - name: Print Custom Message
-        run: echo Hello World!!
-  Job_main:
-    uses: ./.github/workflows/my_reusable_workflow.yml
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+    #   - name: Set up environment
+    #     run: | 
+    #       echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
+
+  ExecuteInfraDeployment:
+        uses: ./.github/workflows/test.yml
