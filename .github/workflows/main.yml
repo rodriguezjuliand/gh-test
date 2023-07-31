@@ -22,4 +22,4 @@ jobs:
         run: | 
            echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
       - name: Execute Deploy Infra
-        uses: ./.github/workflows/deploy-infra.yml
+        uses: ./.github/workflows/deploy.yml
