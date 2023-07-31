@@ -1,5 +1,6 @@
 name: Destroy Resources ACR, AKS, AZ
-on: workflow_dispatch
+on: 
+  workflow_call:
 
 jobs:
 #...DestroyAKS...
