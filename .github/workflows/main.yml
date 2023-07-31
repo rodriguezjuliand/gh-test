@@ -6,21 +6,19 @@ on:
        Infra:
          description: 'Choose action for infra'
          required: true
-         type: choice
          options:
           - deploy
           - destroy
-
+          
 jobs:
   main:
+    if: github.event.inputs.Infra == 'deploy'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up environment
+      - name: Set Up Enviroment
         run: | 
            echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
-
-  ExecuteInfraDeployment:
-        uses: ./.github/workflows/test.yml
+      - name: Execute Deploy Infra  
+        uses: ./.github/workflows/deploy-infra.yml
