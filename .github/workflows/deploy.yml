@@ -1,4 +1,4 @@
-name: Deploy Infra ACR, AKS
+name: Deploy Resources ACR, AKS, AZ
 on: 
   workflow_call:
 
