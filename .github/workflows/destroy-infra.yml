@@ -1,0 +1,8 @@
+name: Destroy Infra
+on:
+  workflow_call:
+  
+jobs:
+   main:
+   name: 
+     
