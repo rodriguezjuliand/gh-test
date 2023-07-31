@@ -13,25 +13,9 @@ on:
 
 jobs:
   deployInfra:
-    runs-on: ubuntu-latest
     if: ${{ github.event.inputs.Infra == 'deploy' }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set Up Environment
-        run: | 
-          echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
-      - name: Execute Deploy Infra
-        uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy.yml
 
   destroyInfra:
-    runs-on: ubuntu-latest
     if: ${{ github.event.inputs.Infra == 'destroy' }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set Up Environment
-        run: | 
-          echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
-      - name: Execute Destroy Infra
-        uses: ./.github/workflows/destroy.yml
+    uses: ./.github/workflows/destroy.yml
