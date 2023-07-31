@@ -2,24 +2,36 @@
 name: Main Workflow
 on:
   workflow_dispatch:
-     inputs:
-       Infra:
-         description: 'Choose action for infra'
-         required: true
-         type: choice
-         options:
+    inputs:
+      Infra:
+        description: 'Choose action for infra'
+        required: true
+        type: choice
+        options:
           - deploy
           - destroy
-          
+
 jobs:
-  main:
-    if: github.event.inputs.Infra == 'deploy'
+  deployInfra:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.Infra == 'deploy' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set Up Enviroment
+      - name: Set Up Environment
         run: | 
-           echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
+          echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
       - name: Execute Deploy Infra
         uses: ./.github/workflows/deploy.yml
+
+  destroyInfra:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.Infra == 'destroy' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set Up Environment
+        run: | 
+          echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
+      - name: Execute Destroy Infra
+        uses: ./.github/workflows/destroy.yml
