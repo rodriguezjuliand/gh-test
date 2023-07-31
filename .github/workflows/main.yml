@@ -6,6 +6,7 @@ on:
        Infra:
          description: 'Choose action for infra'
          required: true
+         type: choice
          options:
           - deploy
           - destroy
