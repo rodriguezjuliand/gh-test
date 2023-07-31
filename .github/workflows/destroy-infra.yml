@@ -3,6 +3,9 @@ on:
   workflow_call:
   
 jobs:
-   main:
-   name: 
-     
+  #...DestroyAZ...
+  DestroyResourceAz:
+    name: Deploy Resource AZ
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo Hola Mundo 2!
