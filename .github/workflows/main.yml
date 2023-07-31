@@ -12,7 +12,6 @@ on:
           
 jobs:
   main:
-    if: github.event.inputs.Infra == 'deploy'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,5 +19,11 @@ jobs:
       - name: Set Up Enviroment
         run: | 
            echo "Infra action chosen: ${{ github.event.inputs.Infra }}"
-      - name: Execute Deploy Infra  
+      
+      - name: Execute Deploy Infra
+        if: github.event.inputs.Infra == 'deploy'
         uses: ./.github/workflows/deploy-infra.yml
+        
+      - name: Execute Deploy Infra
+        if: github.event.inputs.Infra == 'destroy'
+        uses: ./.github/workflows/destroy-infra.yml
