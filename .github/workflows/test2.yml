@@ -4,15 +4,12 @@ on:
 
 jobs:
    CallTest_1:
-     uses: 
+     uses: ./.github/workflows/test1.yml
+   
    Test_2:
      name: Read Variable
      runs-on: ubuntu-20.04
-     steps:      
-       - uses: actions/checkout@v3
-         with: 
-           fetch-depth: 0
-
-       - name: Obtener variable
+     steps:   
+       - name: Get variable
          run: |
-           echo "El valor de la variable generada es $Var_SemVer"
+           echo ${{ needs.CallTest_1.outputs.StringSemVer }}
