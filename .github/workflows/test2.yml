@@ -12,4 +12,4 @@ jobs:
      steps:   
        - name: Get variable
          run: |
-           echo ${{ needs.CallTest_1.outputs.StringSemVer }}
+           echo ${{ needs.CallTest_1.outputs.StringTest }}
