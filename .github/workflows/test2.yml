@@ -14,13 +14,6 @@ jobs:
        - name: Get variable
          run: |
            echo "version=${{ needs.CallTest_1.outputs.StringTest }}" >> $GITHUB_ENV
-      
-       - name: Replace Token in secret.yml
-         uses: cschleiden/replace-tokens@v1
-         with:
-           tokenPrefix: '{'
-           tokenSuffix: '}'
-           files: 'Secret/*.yaml'
          env:
           VERSION: ${{ env.version }}
        - run: echo $VERSION
