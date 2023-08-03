@@ -13,6 +13,6 @@ jobs:
     outputs: 
       versionSemVer: ${{ steps.step1.outputs.versionSemVer }}
     steps: 
-      - name: Checkout repository
+      - name: Generate Variable a Output
         id: step1
         run: echo "versionSemVer=helloWorld!" >> $GITHUB_OUTPUT
