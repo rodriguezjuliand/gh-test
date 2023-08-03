@@ -1,100 +1,16 @@
-name: Destroy Resources ACR, AKS, AZ
+name: TEST-2
 on: 
   workflow_call:
 
 jobs:
-#...DestroyAKS...
-   DestroyResourcesAKS:
-     name: Destroy Resources AKS
+   Test_2:
+     name: Read Variable
      runs-on: ubuntu-20.04
      steps:      
        - uses: actions/checkout@v3
          with: 
            fetch-depth: 0
 
-       - name: Replace Token in .tf
-         uses: cschleiden/replace-tokens@v1
-         with:
-           tokenPrefix: '{'
-           tokenSuffix: '}'
-           files: 'terraform/aks/*.tf'
-         env:
-           AKSNAME: ${{ vars.AKSNAME }}
-           NAMESPACE: ${{ vars.NAMESPACE }}
-           RESOURCEGROUPNAME: ${{ vars.RESOURCEGROUPNAME }}
-           STORAGEACCOUNTNAME: ${{ vars.STORAGEACCOUNTNAME }}
-           STORAGECONTNAMEACR: ${{ vars.STORAGECONTNAMEAKS }}
-           LOCATION: ${{ vars.LOCATION }}
-           vSubscriptionId: ${{ vars.VSUBSCRIPTIONID }}
-           vClientId: ${{ vars.VCLIENTID }}
-           vClientSecret: ${{ vars.VCLIENTSECRET }}
-           vTenantId: ${{ vars.VTENANTID }}   
-        
-       - name: Terraform init AKS
-         uses: ahmedig/terraform-azurerm-backend@v4
-         with:
-           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-           resource_group_name: ${{ vars.RESOURCEGROUPNAME }}
-           container_name: ${{ vars.STORAGECONTNAMEAKS }}
-           storage_account_name: ${{ vars.STORAGEACCOUNTNAME }}
-           file_name: ${{ vars.STORAGEKEY }}
-           subscription_id: ${{ vars.VSUBSCRIPTIONID }}
-           tf_working_directory: ./terraform/aks
-       - name: Terraform Destroy AKS
-         run: terraform destroy -auto-approve
-         working-directory: ./terraform/aks
-
-#...DestroyACR...
-   DestroyResourcesACR:
-     name: Destroy Resources ACR
-     runs-on: ubuntu-20.04
-     steps: 
-       - uses: actions/checkout@v3
-         with: 
-           fetch-depth: 0
-       - name: Replace Token in .tf
-         uses: cschleiden/replace-tokens@v1
-         with:
-           tokenPrefix: '{'
-           tokenSuffix: '}'
-           files: 'terraform/acr/*.tf'
-         env:
-           ACRNAME: ${{ vars.ACRNAME }}
-           RESOURCEGROUPNAME: ${{ vars.RESOURCEGROUPNAME }}
-           STORAGEACCOUNTNAME: ${{ vars.STORAGEACCOUNTNAME }}
-           STORAGECONTNAMEACR: ${{ vars.STORAGECONTNAMEACR }}
-           LOCATION: ${{ vars.LOCATION }}
-           vSubscriptionId: ${{ vars.VSUBSCRIPTIONID }}
-           vClientId: ${{ vars.VCLIENTID }}
-           vClientSecret: ${{ vars.VCLIENTSECRET }}
-           vTenantId: ${{ vars.VTENANTID }}
-
-       - name: Terraform init ACR
-         uses: ahmedig/terraform-azurerm-backend@v4
-         with:
-           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-           resource_group_name: ${{ vars.RESOURCEGROUPNAME }}
-           container_name: ${{ vars.STORAGECONTNAMEACR }}
-           storage_account_name: ${{ vars.STORAGEACCOUNTNAME }}
-           file_name: ${{ vars.STORAGEKEY }}
-           subscription_id: ${{ vars.VSUBSCRIPTIONID }}
-           tf_working_directory: ./terraform/acr
-       - name: Terraform Destroy ACR
-         run: terraform destroy -auto-approve
-         working-directory: ./terraform/acr
-
-#...DestroyAZ...
-   DestroyResourcesAz:
-      name: Destroy Resources AZ
-      runs-on: ubuntu-20.04
-      needs: [DestroyResourcesAKS, DestroyResourcesACR]
-      steps: 
-        - name: Login AZ
-          uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-        - name: Destroy AZ Resources
-          uses: azure/CLI@v1
-          with:
-            inlineScript: |
-              az resource delete -g ${{ vars.RESOURCEGROUPNAME }} --name ${{ vars.STORAGEACCOUNTNAME }} --resource-type "Microsoft.Storage/storageAccounts"
+       - name: Obtener variable
+         run: |
+           echo "El valor de la variable generada es $var_Semver"
