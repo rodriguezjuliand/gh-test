@@ -1,0 +1,16 @@
+name: TEST_1
+on: 
+  workflow_call:
+  
+jobs:
+  Test_1:
+    name: Example Generate Variable
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate Variable
+        run: |
+          echo "Var_SemVer="0.1.2">>$GITHUB_ENV
+          echo ${{ env.Var_SemVer }}
