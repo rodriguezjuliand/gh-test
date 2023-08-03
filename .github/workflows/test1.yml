@@ -11,7 +11,7 @@ jobs:
     name: Example Generate Variable
     runs-on: ubuntu-latest
     outputs: 
-      versionSemVer: ${{ steps.step1.outputs.versionSemVer }}
+      versionSemVer: ${{ steps.step1.outputs.StringTest }}
     steps: 
       - name: Generate Variable a Output
         id: step1
