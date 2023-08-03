@@ -14,5 +14,5 @@ jobs:
 
       - name: Generate Variable
         run: |
-          echo "Var_SemVer="0.1.2">>$GITHUB_ENV
+          echo Var_SemVer="0.1.2">>$GITHUB_ENV
           echo ${{ env.Var_SemVer }}
