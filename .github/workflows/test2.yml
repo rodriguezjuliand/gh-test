@@ -13,4 +13,5 @@ jobs:
      steps:   
        - name: Get variable
          run: |
-           echo ${{ needs.CallTest_1.outputs.StringTest }}
+           echo "version=${{ needs.CallTest_1.outputs.StringTest }}" >> $GITHUB_ENV
+           echo $version
