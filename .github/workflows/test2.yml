@@ -13,4 +13,4 @@ jobs:
 
        - name: Obtener variable
          run: |
-           echo "El valor de la variable generada es $Var_Semver"
+           echo "El valor de la variable generada es $Var_SemVer"
