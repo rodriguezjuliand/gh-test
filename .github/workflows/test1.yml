@@ -1,6 +1,8 @@
 name: TEST_1
 on: 
   workflow_call:
+env:
+  Var_SemVer: "0.1.2"
   
 jobs:
   Test_1:
@@ -14,5 +16,5 @@ jobs:
 
       - name: Generate Variable
         run: |
-          echo Var_SemVer="0.1.2">>$GITHUB_ENV
+          echo "Var_SemVer=${{ env.Var_SemVer }}">>$GITHUB_ENV
           echo ${{ env.Var_SemVer }}
