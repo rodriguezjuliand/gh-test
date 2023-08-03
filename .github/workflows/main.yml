@@ -8,4 +8,5 @@ jobs:
     uses: ./.github/workflows/test1.yml
 
   Job2:
+    needs: Job1
     uses: ./.github/workflows/test2.yml
