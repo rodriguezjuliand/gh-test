@@ -9,6 +9,7 @@ jobs:
    Test_2:
      name: Read Variable
      runs-on: ubuntu-20.04
+     needs: CallTest_1
      steps:   
        - name: Get variable
          run: |
