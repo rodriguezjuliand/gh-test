@@ -1,6 +1,8 @@
 name: TEST_2
 on: 
   workflow_call:
+env: 
+  VarSemver: ${{ needs.CallTest_1.outputs.StringTest }}
 
 jobs:
    CallTest_1:
@@ -13,4 +15,4 @@ jobs:
      steps:   
        - name: Get variable
          run: |
-           echo ${{ needs.CallTest_1.outputs.StringTest }}
+           echo $VarSemver
