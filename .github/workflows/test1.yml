@@ -15,4 +15,4 @@ jobs:
     steps: 
       - name: Generate Variable a Output
         id: step1
-        run: echo "versionSemVer=helloWorld!" >> $GITHUB_OUTPUT
+        run: echo "StringTest=helloWorld!" >> $GITHUB_OUTPUT
